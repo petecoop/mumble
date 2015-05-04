@@ -10,6 +10,9 @@ RUN apt-get update && \
 RUN cp -n /etc/mumble-server.ini /data/mumble-server.ini
 RUN chown -R mumble-server /data
 
+RUN sed -i 's/dbus=system/dbus=session/' /data/mumble-server.ini && \
+  sed -i 's/ice=/#ice=/' /data/mumble-server.ini
+
 VOLUME ["/data"]
 EXPOSE 64738 64738/udp
 
